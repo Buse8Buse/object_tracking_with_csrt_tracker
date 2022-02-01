@@ -1,5 +1,20 @@
 # object_tracking_with_csrt_tracker
+
 Object tracking was performed with the CSRT Tracker algorithm.
+
+# What is Object Tracking ?
+
+-Simply,
+Finding an object in consecutive frames of a video is called object tracking.
+
+Face detector in a video operating and the person's face is obscured by an object, the face detector is likely will fail.
+
+On the other hand, a good tracking algorithm can handle a certain level of congestion.
+will.
+
+An image or video, single or multi, in many areas of daily life.
+applied on. Security-entertainment-daily life-crime detection etc. like many more
+can be used for any reason.
 
 ## What is CSRT Tracker?
 
@@ -22,6 +37,11 @@ To install the script you only need to download the Repository. To Run the scrip
 
 ## CSRT ile ayırt edici korelasyon filtrelerinin ana adımları boyunca ayrıştırılan tek bir yineleme işleme süresi 
 ![image](https://user-images.githubusercontent.com/81264301/152055086-63609eac-6b5b-4501-aaa3-c19b6faf7004.png)
+
+
+Tracker adjustments, edits of information about the bounding box, image FPS information and information on the size and positions to be displayed and on the image
+size- location information- font- shape- number of images to be displayed per second, etc.
+The settings are as shown in the code fragments below and are included in the code.
 
 ## Note
 
