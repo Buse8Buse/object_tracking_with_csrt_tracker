@@ -55,4 +55,24 @@ If it is completely lost, the tracking ends and the object disappears.
 Choosing a large size will facilitate the tracking of the object. When I set small frame
 I observed frequent deviations from the target.
 
+![image](https://user-images.githubusercontent.com/81264301/152068981-dbb41f53-2cfe-461e-bbc5-c54956977b9f.png)
+
+![image](https://user-images.githubusercontent.com/81264301/152069016-592fab83-2828-425a-bc9a-e7fb2c13284b.png)
+
+![image](https://user-images.githubusercontent.com/81264301/152069039-619d1573-d8f6-4a7c-92c5-c75a097c520e.png)
+
+![image](https://user-images.githubusercontent.com/81264301/152069063-bdfd1aae-58e1-4000-a463-3f7fa8838324.png)
+
+![image](https://user-images.githubusercontent.com/81264301/152069090-f83c270e-e400-46ce-8be0-1bd74bcd4cac.png)
+
+## Finally
+
+In my work, I used a video that includes a single vehicle on the road.
+
+You can also use a video or webcam with the object you want to track.
+
+Simply write the 'path' of the data you will use in the piece of code specified as im = cv2.VideoCapture('Test_2.mp4') .
+
+Or if you want to work on the webcam
+Just write im = cv2.VideoCapture(0)
 
