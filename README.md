@@ -35,7 +35,7 @@ To install the script you only need to download the Repository. To Run the scrip
 
 -Python
 
-## CSRT ile ayırt edici korelasyon filtrelerinin ana adımları boyunca ayrıştırılan tek bir yineleme işleme süresi 
+## A single iteration processing time parsed through the main steps of CSRT and discriminant correlation filters
 ![image](https://user-images.githubusercontent.com/81264301/152055086-63609eac-6b5b-4501-aaa3-c19b6faf7004.png)
 
 
