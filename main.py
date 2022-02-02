@@ -1,62 +1,69 @@
-#Video karelerini ayıklayıp kaydediyorum.
+# extract and save video frames.
 
 import cv2
-goruntu = cv2.VideoCapture('Test_2.mp4')
+im = cv2.VideoCapture('Test_2.mp4')
 
-#Şimdi bir CSRT Tracker yaratıyorum.
+# Now create a CSRT Tracker.
 tracker = cv2.TrackerCSRT_create()
-#Görüntüyü ekranda göstermek için aşağıdaki kodu çalıştırıyorum.
-success, foto = goruntu.read()
 
-#BBOX parametresi, çıktı verinin içinde bulunduğu çerçeveyi ifade eder.(Bounding box)
+# Run the code below to display the image on the screen.
+success, photo = im.read()
 
-#selectROI() işlevi, bize görüntüyü otomatik olarak gösterir ve görüntüdeki ROI'yi manuel olarak seçmemize izin verir.
+# BBOX parameter refers to the frame in which the output data is contained.(Bounding box)
 
-#!!!!!!!!!!!!!!! ROI'yi seçtikten sonra, seçilen alana ilerlemek için boşluk düğmesine basmamız veya girmemiz gerekiyor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# selectROI() function automatically shows us the image and allows us to manually select the ROI in the image.
 
-#tek bir bounding box oluşturmada cv2.selectROI'nin son parametresinin False olması önemlidi.
-bbox = cv2.selectROI("Takip ediliyor.",foto,False)
-tracker.init(foto,bbox)
+# !!!!!!!!!!!!!!! After selecting the ROI we need to press or enter the space button to advance to the selected area !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#Dörtgen şeklinde bir kutu belirlenir ve sunucudan bu kutu içerine düşen veriler istenir.Çerçeve sınırları minX, minyY maxX, MaxY şeklinde belirlenir.
-def drawBox(foto,bbox):
+#In creating a single bounding box it was important that the last parameter of cv2.selectROI was 'False'.
+bbox = cv2.selectROI("Tracking.",photo,False)
+tracker.init(photo,bbox)
+
+# A rectangular box is determined and the data falling into this box is requested from the server.
+
+# Frame boundaries are determined as minX, minyY maxX, MaxY.
+def drawBox(photo,bbox):
     x, y, w, h = int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3])
-    cv2.rectangle(foto,(x,y),((x+w),(y+h)),(255,0,255),3,1)
-    cv2.putText(foto, "Takip ediliyor.", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0),3)
+    cv2.rectangle(photo,(x,y),((x+w),(y+h)),(255,0,255),3,1)
+    cv2.putText(photo, "Tracking.", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0),3)
 
 while True:
-    #cv2.getTickCount(),bir referans olaydan sonra (makinenin açıldığı an gibi) bu işlevin çağrıldığı ana kadar saat çevrimlerinin sayısıdır.
-    #cv2.getTickFrequency(),saat çevrimlerinin sıklığını veya saniyedeki saat çevrimlerinin sayısını döndürür .
+    # 'cv2.getTickCount()' is the number of clock cycles after a reference event (such as when the machine is turned on) until this function is called.
 
-    #burada zamanlayıcı ayarlaması yapıldı.
+    # 'cv2.get Tick Frequency()' returns the frequency of clock cycles or the number of clock cycles per second.
+
+    # The timer has been set here.
     timer = cv2.getTickCount()
 
-    #burada tracker algılanması için
-    success, foto = goruntu.read()
+    # Here, settings are made for tracker detection.
+    success, photo = im.read()
 
-    success,bbox = tracker.update(foto)
+    success,bbox = tracker.update(photo)
     #print(type(bbox))
     print(bbox)
 
     if success:
-        drawBox(foto,bbox)
+        drawBox(photo,bbox)
     else:
-        cv2.putText(foto,"Nesne Kayboldu.",(100,100),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
+        cv2.putText(photo,"Object Disappeared.",(100,100),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
 
-    #saniye başına düşen görüntü sayısını hesaplamak için gerekli ayarlamaları yapıyorum.
+    # Necessary settings are being made to calculate the number of images per second.
     fps = cv2.getTickFrequency()/(cv2.getTickCount()-timer)
 
-    #putText ile görüntü üzerine yazı yazılır.
-    #Bu fonksiyona parametre olarak yazdırılacak yazı, yazının başlayacağı koordinat, font bilgisi, renk ve kalınlık değerleri aşağıdadır.
+    # 'putText' overwrites the image.
 
-    #Burada görüntü boyut-font-RGB uzayı vs. ayarlamaları ve en son parametrede de yazı kalınlığı ayarlaması yapılır.
-    cv2.putText(foto,str(int(fps)),(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
+    # The text to be printed as a parameter to this function, the coordinate where the text will start, the font information, color and thickness values are below.
 
-    #Burada video kestinde çerçeve içine aldığımız görüntünün video oynatıldığında takip edilip "Takipçi" yazısıyla gösterilmesini gerçekleştireceğiz.
-    cv2.imshow("Takipçi",foto)
+    # Here image size-font-RGB space etc. adjustments and in the last parameter, font thickness adjustment is made.
+    cv2.putText(photo,str(int(fps)),(50,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
 
-    #cv2.waitKey(1)o anda basılan tuşun karakter kodunu ve herhangi bir tuşa basılmazsa -1'i döndürür.
-    #tek bayt olmayan bir kod döndüreceğinden & 0xFF,anahtarın yalnızca tek baytlık (ASCII) temsilinin kalmasını sağlamak için ikili bir VE işlemidir .
-        # her zaman 'q'nun 113 olan (onaltılık olarak 0x71) ASCII temsilini döndürür
+    # Here, when the video is cut, the framed image is followed when the video is played and displayed with the text "Tracker".
+    cv2.imshow("Tracker",photo)
+
+    # 'cv2.waitKey(1)' returns the character code of the currently pressed key and '-1' if no key is pressed.
+
+    # When returning a non-single-byte code, 'n & 0xFF' is a binary 'AND operation' to ensure that only the single-byte (ASCII) representation of the key remains.
+
+    # Always returns the ASCII representation of 'q' which is 113 (0x71 in hexadecimal)
     if cv2.waitKey(1) & 0xff==ord('q'):
         break
