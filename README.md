@@ -71,8 +71,8 @@ In my work, I used a video that includes a single vehicle on the road.
 
 You can also use a video or webcam with the object you want to track.
 
-Simply write the 'path' of the data you will use in the piece of code specified as im = cv2.VideoCapture('Test_2.mp4') .
+Simply write the 'path' of the data you will use in the piece of code specified as 'im = cv2.VideoCapture('Test_2.mp4')' .
 
 Or if you want to work on the webcam
-Just write im = cv2.VideoCapture(0)
+Just write 'im = cv2.VideoCapture(0)'
 
