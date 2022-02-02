@@ -61,9 +61,9 @@ I observed frequent deviations from the target.
 
 ![image](https://user-images.githubusercontent.com/81264301/152069039-619d1573-d8f6-4a7c-92c5-c75a097c520e.png)
 
-![image](https://user-images.githubusercontent.com/81264301/152069063-bdfd1aae-58e1-4000-a463-3f7fa8838324.png)
+![image](https://user-images.githubusercontent.com/81264301/152128910-215c0d0d-a116-4bc9-8629-035083c84dfc.png)
 
-![image](https://user-images.githubusercontent.com/81264301/152069090-f83c270e-e400-46ce-8be0-1bd74bcd4cac.png)
+![image](https://user-images.githubusercontent.com/81264301/152129001-4f70086b-10c5-4c31-9c19-8be96ef4985a.png)
 
 ## Finally
 
